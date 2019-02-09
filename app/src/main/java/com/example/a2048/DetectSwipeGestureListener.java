@@ -31,17 +31,25 @@ class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureListener
         float deltaYAbs = Math.abs(deltaY);
 
         if((deltaXAbs >= MIN_SWIPE_DISTANCE_X) && (deltaXAbs <= MAX_SWIPE_DISTANCE_X)) {
-            if(deltaX > 0)
-                Log.i("i", "Swipe to left");
-            else
-                Log.i("i", "Swipe to right");
+            if(deltaX > 0) {
+              //  ((MainActivity) getActivity()).moveLeft();
+                Log.i("swipe", "Left");
+            }
+            else {
+                //((MainActivity) getActivity()).moveRight();
+                Log.i("swipe", "Right");
+            }
         }
 
         if((deltaYAbs >= MIN_SWIPE_DISTANCE_Y) && (deltaYAbs <= MAX_SWIPE_DISTANCE_Y)) {
-            if(deltaY > 0)
-                Log.i("i", "Swipe to up");
-            else
-                Log.i("i", "Swipe to down");
+            if(deltaY > 0) {
+                //((MainActivity) getActivity()).moveUp();
+                Log.i("swipe", "Up");
+            }
+            else {
+                //((MainActivity) getActivity()).moveDown();
+                Log.i("swipe", "Down");
+            }
         }
 
         return true;

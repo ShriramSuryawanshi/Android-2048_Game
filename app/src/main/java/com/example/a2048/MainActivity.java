@@ -4,16 +4,41 @@ import android.graphics.Color;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.view.MotionEvent;
 import java.util.Random;
+import java.lang.Math;
 
 
 public class MainActivity extends AppCompatActivity  {
 
     private GestureDetectorCompat gestureDetectorCompat = null;
-    public int[][] matrix = new int[4][4];
     public boolean start = true;
+    public int[] array = new int[4];
+
+
+    public void formatBoard() {
+
+        for(int i = 1; i <= 16; i++) {
+            TextView textView = (TextView) findViewById(getResources().getIdentifier("textView" + i,"id", this.getPackageName()));
+            textView.setBackgroundColor(Color.parseColor("#FFFAFA"));
+            textView.setTextColor(Color.parseColor("#000000"));
+        }
+    }
+
+
+    public void arrayReverse() {
+
+        for (int i=0; i < array.length / 2; i++)
+        {
+            int temp = array[i];
+            array[i] = array[array.length - i - 1];
+            array[array.length - i - 1] = temp;
+        }
+    }
+
 
     public void newNumber() {
 
@@ -38,6 +63,161 @@ public class MainActivity extends AppCompatActivity  {
             newNumber();
     }
 
+
+    public void sumMove() {
+
+        for(int a = 0; a <= 2; a++) {
+
+            for(int b = a+1; b <= 3; b++) {
+
+                if (array[b] == 0)
+                    continue;
+                else if(array[a] == array[b]) {
+                    array[a] = array[a] + array[b];
+                    array[b] = 0;
+                    break;
+                }
+                else
+                    break;
+            }
+        }
+
+        int[] array1 = new int[4];
+        for(int a = 0; a <= 3; a++)
+            array1[a] = 0;
+
+        int cnt = 0;
+
+        for(int a = 0; a <= 3; a++) {
+
+            if(array[a] != 0) {
+                array1[cnt] = array[a];
+                cnt++;
+            }
+        }
+
+        for(int a = 0; a <= 3; a++)
+            array[a] = array1[a];
+    }
+
+
+    public void moveLeft() {
+
+        for(int i = 1; i <= 16; i += 4) {
+
+            TextView textView1 = (TextView) findViewById(getResources().getIdentifier("textView" + i, "id", this.getPackageName()));
+            array[0] = textView1.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView1.getText().toString());
+
+            TextView textView2 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+1), "id", this.getPackageName()));
+            array[1] = textView2.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView2.getText().toString());
+
+            TextView textView3 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+2), "id", this.getPackageName()));
+            array[2] = textView3.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView3.getText().toString());
+
+            TextView textView4 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+3), "id", this.getPackageName()));
+            array[3] = textView4.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView4.getText().toString());
+
+            sumMove();
+
+            textView1.setText(array[0] == 0 ? "" : String.valueOf(array[0]));
+            textView2.setText(array[1] == 0 ? "" : String.valueOf(array[1]));
+            textView3.setText(array[2] == 0 ? "" : String.valueOf(array[2]));
+            textView4.setText(array[3] == 0 ? "" : String.valueOf(array[3]));
+        }
+
+        formatBoard();
+        newNumber();
+
+    }
+
+
+    public void moveRight() {
+
+        for(int i = 1; i <= 16; i += 4) {
+
+            TextView textView1 = (TextView) findViewById(getResources().getIdentifier("textView" + i, "id", this.getPackageName()));
+            array[3] = textView1.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView1.getText().toString());
+
+            TextView textView2 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+1), "id", this.getPackageName()));
+            array[2] = textView2.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView2.getText().toString());
+
+            TextView textView3 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+2), "id", this.getPackageName()));
+            array[1] = textView3.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView3.getText().toString());
+
+            TextView textView4 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+3), "id", this.getPackageName()));
+            array[0] = textView4.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView4.getText().toString());
+
+            sumMove();
+
+            textView1.setText(array[3] == 0 ? "" : String.valueOf(array[3]));
+            textView2.setText(array[2] == 0 ? "" : String.valueOf(array[2]));
+            textView3.setText(array[1] == 0 ? "" : String.valueOf(array[1]));
+            textView4.setText(array[0] == 0 ? "" : String.valueOf(array[0]));
+        }
+
+        formatBoard();
+        newNumber();
+    }
+
+
+    public void moveUp() {
+
+        for(int i = 1; i <= 4; i++) {
+
+            TextView textView1 = (TextView) findViewById(getResources().getIdentifier("textView" + i, "id", this.getPackageName()));
+            array[0] = textView1.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView1.getText().toString());
+
+            TextView textView2 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+4), "id", this.getPackageName()));
+            array[1] = textView2.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView2.getText().toString());
+
+            TextView textView3 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+8), "id", this.getPackageName()));
+            array[2] = textView3.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView3.getText().toString());
+
+            TextView textView4 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+12), "id", this.getPackageName()));
+            array[3] = textView4.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView4.getText().toString());
+
+            sumMove();
+
+            textView1.setText(array[0] == 0 ? "" : String.valueOf(array[0]));
+            textView2.setText(array[1] == 0 ? "" : String.valueOf(array[1]));
+            textView3.setText(array[2] == 0 ? "" : String.valueOf(array[2]));
+            textView4.setText(array[3] == 0 ? "" : String.valueOf(array[3]));
+        }
+
+        formatBoard();
+        newNumber();
+    }
+
+
+    public void moveDown() {
+
+        for(int i = 1; i <= 4; i++) {
+
+            TextView textView1 = (TextView) findViewById(getResources().getIdentifier("textView" + i, "id", this.getPackageName()));
+            array[3] = textView1.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView1.getText().toString());
+
+            TextView textView2 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+4), "id", this.getPackageName()));
+            array[2] = textView2.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView2.getText().toString());
+
+            TextView textView3 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+8), "id", this.getPackageName()));
+            array[1] = textView3.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView3.getText().toString());
+
+            TextView textView4 = (TextView) findViewById(getResources().getIdentifier("textView" + (i+12), "id", this.getPackageName()));
+            array[0] = textView4.getText().toString().equalsIgnoreCase("") ? 0 : Integer.parseInt(textView4.getText().toString());
+
+            sumMove();
+
+            textView1.setText(array[3] == 0 ? "" : String.valueOf(array[3]));
+            textView2.setText(array[2] == 0 ? "" : String.valueOf(array[2]));
+            textView3.setText(array[1] == 0 ? "" : String.valueOf(array[1]));
+            textView4.setText(array[0] == 0 ? "" : String.valueOf(array[0]));
+        }
+
+        formatBoard();
+        newNumber();
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +241,22 @@ public class MainActivity extends AppCompatActivity  {
     public boolean onTouchEvent(MotionEvent event) {
         gestureDetectorCompat.onTouchEvent(event);
         return true;
+    }
+
+    public void clickLeft(View view) {
+        moveLeft();
+    }
+
+    public void clickRight(View view) {
+        moveRight();
+    }
+
+    public void clickUp(View view) {
+        moveUp();
+    }
+
+    public void clickDown(View view) {
+        moveDown();
     }
 
 
