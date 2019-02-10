@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.view.MotionEvent;
 import java.util.Random;
-import java.lang.Math;
+
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -17,25 +17,20 @@ public class MainActivity extends AppCompatActivity  {
     private GestureDetectorCompat gestureDetectorCompat = null;
     public boolean start = true;
     public int[] array = new int[4];
+    public String[] colorCodes = {"#e22a64", "#40E0D0", "#672ae2", "#2abde2", "#cfe22a", "#e29e2a", "#e2582a", "#2ae2d5", "#800000", "#008000", "#008000"};
 
 
     public void formatBoard() {
 
         for(int i = 1; i <= 16; i++) {
             TextView textView = (TextView) findViewById(getResources().getIdentifier("textView" + i,"id", this.getPackageName()));
-            textView.setBackgroundColor(Color.parseColor("#FFFAFA"));
-            textView.setTextColor(Color.parseColor("#000000"));
-        }
-    }
 
-
-    public void arrayReverse() {
-
-        for (int i=0; i < array.length / 2; i++)
-        {
-            int temp = array[i];
-            array[i] = array[array.length - i - 1];
-            array[array.length - i - 1] = temp;
+            if (textView.getText().toString().equalsIgnoreCase(""))
+                textView.setBackgroundColor(Color.parseColor("#FFFAFA"));
+            else {
+                textView.setBackgroundColor(Color.parseColor(colorCodes[(int) (Math.log(Integer.parseInt(textView.getText().toString())) / Math.log(2))]));
+                textView.setTextColor(Color.parseColor("#000000"));
+            }
         }
     }
 
@@ -258,10 +253,4 @@ public class MainActivity extends AppCompatActivity  {
     public void clickDown(View view) {
         moveDown();
     }
-
-
-
-
-
-
 }
