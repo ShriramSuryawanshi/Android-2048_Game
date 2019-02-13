@@ -88,6 +88,10 @@ public class MainActivity extends AppCompatActivity  {
             textView.animate().alpha(0.2f).setDuration(0);
         }
 
+
+        score = 0;
+        lastScore = 0;
+        undo = false;
         newNumber = true;
         newNumber();
     }
@@ -100,7 +104,7 @@ public class MainActivity extends AppCompatActivity  {
 
             if (textView.getText().toString().equalsIgnoreCase("2048")) {
 
-                Toast toast = Toast.makeText(getApplicationContext(), "Well Done! Game Over! Let's play again...", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "Well Done! Game Over! \n\nLet's play again...", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
 
@@ -121,7 +125,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
         if(!nextAvailable) {
-            Toast toast = Toast.makeText(getApplicationContext(),"Oops...! Game Over! Let's try again...", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getApplicationContext(),"Oops...! Game Over! \n\nLet's try again...", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
 
@@ -539,7 +543,7 @@ public class MainActivity extends AppCompatActivity  {
         gestureListener.setActivity(this);
         gestureDetectorCompat = new GestureDetectorCompat(this, gestureListener);
 
-        Toast toast = Toast.makeText(getApplicationContext(),"Welcome to 2048! Move numbers to left/right/up/down to make the sum 2048. New number will appear after each sum/move operation in WHITE color.", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getApplicationContext(),"Welcome to 2048! \n\nMove numbers to left/right/up/down to make the sum 2048. \n\nNew number will appear after each sum/move operation in WHITE color.", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
 
