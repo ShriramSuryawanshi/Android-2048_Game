@@ -7,57 +7,6 @@
     android:background="@drawable/back"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/buttonRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:onClick="clickRight"
-        android:text="Right"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonUp"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-    <Button
-        android:id="@+id/buttonLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="clickLeft"
-        android:text="Left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonUp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_bias="0.025" />
-
-    <Button
-        android:id="@+id/buttonDown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="clickDown"
-        android:text="Down"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonRight"
-        app:layout_constraintStart_toEndOf="@+id/buttonLeft"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUp"
-        app:layout_constraintVertical_bias="0.166" />
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="80dp"
@@ -316,7 +265,7 @@
         android:layout_marginTop="136dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:fadingEdge="horizontal|vertical"
         android:foregroundGravity="center"
         android:gravity="center"
@@ -378,7 +327,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="136dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:fadingEdge="horizontal|vertical"
         android:foregroundGravity="center"
         android:gravity="center"
@@ -391,19 +340,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:onClick="clickUp"
-        android:text="UP"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.456"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 </android.support.constraint.ConstraintLayout>
