@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity  {
     public void undoStep(View view) {
 
         if(undo) {
+
             Toast toast = Toast.makeText(getApplicationContext(), "Undone last " + undoAction + " swipe!", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
@@ -202,7 +203,7 @@ public class MainActivity extends AppCompatActivity  {
 
                 if (array[b] == 0)
                     continue;
-                else if (array[a] == array[b]) {
+                else if (array[a] == array[b] && array[a] != 0) {
                     array[a] = array[a] + array[b];
                     score += array[a];
                     array[b] = 0;
@@ -247,7 +248,7 @@ public class MainActivity extends AppCompatActivity  {
     public void animationTransition(TextView animationTextView, final int old, final int local_n, final int local_value, final int fromxDelta, final int toXDelta, final int fromYDelta, final int toYDelta, final String op) {
 
         Animation animation = new TranslateAnimation(fromxDelta, toXDelta, fromYDelta, toYDelta);
-        animation.setDuration(300);
+        animation.setDuration(200);
         animation.setFillAfter(false);
         animationTextView.setText("");
         animation.setAnimationListener(new Animation.AnimationListener() {
